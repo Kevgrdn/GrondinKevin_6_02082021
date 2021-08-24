@@ -10,11 +10,11 @@ const User = require("../models/user")
 exports.signup = (req, res, next) => {
     //Bcrypt va hasher le mot de passe 10x afin de s'assurer de la sécurité des données.
     bcrypt.hash(req.body.password, 10)
-    //Crée un nouvel utilisateur
+    //Crée un nouvel utilisateur et hash le mot de passe
     .then(hash => {
-    const user = new User({
-        email: req.body.email,
-        password: hash
+        const user = new User({
+            email: req.body.email,
+            password: hash
     });
     //Puis l'utilisateur va etre enregistré dans la base de données
     user.save()
@@ -62,3 +62,4 @@ exports.login = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
+
