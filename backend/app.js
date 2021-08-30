@@ -5,7 +5,6 @@ const app = express();
 const path = require('path');
 const dotenv = require('dotenv').config();
 
-// mongodb+srv://kevin:Bertrand1974!@cluster0.onezu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 //Connexion à la base de données
 mongoose.connect(process.env.DATABASE,
   {useNewUrlParser: true,
