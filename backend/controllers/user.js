@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv').config();
 
 
 //Appelle le modèle
@@ -19,7 +20,7 @@ exports.signup = (req, res, next) => {
     //Puis l'utilisateur va etre enregistré dans la base de données
     user.save()
         .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(500).json({ message: 'Adresse mail déjà utilisée !' }));
     })
     .catch(error => res.status(500).json({ error }));
 };
@@ -53,7 +54,7 @@ exports.login = (req, res, next) => {
               //Créée le Token via le package jsonWebToken
               token: jwt.sign(
                   {userId: user._id},
-                  'RANDOM_TOKEN_SECRET',
+                  process.env.TOKEN,
                   { expiresIn: '24h'}  
               )
             });

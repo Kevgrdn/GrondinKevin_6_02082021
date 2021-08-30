@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+//On exporte la logique afin de la retrouver dans la route
 module.exports = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1];

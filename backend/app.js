@@ -3,10 +3,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
 const path = require('path');
+const dotenv = require('dotenv').config();
 
-
+// mongodb+srv://kevin:Bertrand1974!@cluster0.onezu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 //Connexion à la base de données
-mongoose.connect('mongodb+srv://kevin:Bertrand1974!@cluster0.onezu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect(process.env.DATABASE,
   {useNewUrlParser: true,
   useUnifiedTopology: true })
 .then(() => console.log('Connexion à MongoDB réussie !'))
